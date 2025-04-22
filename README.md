@@ -27,9 +27,20 @@ Spring Framework와 MyBatis를 활용하여 구현한 웹 쇼핑몰 장바구니
 
 ## 📷 실행 예시
 
-| 상품 목록 화면 | 장바구니 화면 | 결제 화면 |
-|----------------|---------------|------------|
-| ![](docs/screenshots/product-list.png) | ![](docs/screenshots/cart.png) | ![](docs/screenshots/payment.png) |
+<h3>📸 실행 예시</h3>
+
+<table>
+  <tr>
+    <th>상품 목록 화면</th>
+    <th>장바구니 화면</th>
+    <th>결제 화면</th>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/product-list.png" width="250"/></td>
+    <td><img src="docs/screenshots/cart.png" width="200"/></td>
+    <td><img src="docs/screenshots/payment.png" width="200"/></td>
+  </tr>
+</table>
 
 > `docs/screenshots/` 폴더에 이미지를 업로드하여 반영하세요.
 
