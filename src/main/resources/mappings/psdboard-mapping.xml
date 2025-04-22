@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PsdBoard">
+
+<insert id="INSERT" parameterType="PsdBoardVO">
+ insert into psdboard(seq, title, age ,write, content, regdate, cnt, uploadFileStr )
+ values (idx_board.nextval,#{title}, #{age} ,#{write}, #{content} ,sysdate, 1, #{uploadFileStr})
+</insert>
+
+<delete id="DELETE" parameterType="PsdBoardVO">
+ delete from psdboard where seq = #{seq} 
+</delete>
+
+<update id="UPDATEFILE" parameterType="PsdBoardVO">
+ update psdboard set title=#{title} , age=#{age} ,
+                     write=#{write}, content=#{content},  
+                     uploadFileStr=#{uploadFileStr}
+ where  seq=#{seq}
+</update>
+
+<update id="UPDATE" parameterType="PsdBoardVO">
+ update psdboard set title=#{title} , age=#{age} ,
+                     write=#{write}, content=#{content}
+ where  seq=#{seq}
+</update>
+
+
+<select id="SELECTONE" parameterType="PsdBoardVO" 
+                       resultType ="PsdBoardVO" >
+    select *  from  psdboard
+    where seq= #{seq}
+
+</select>
+
+
+<select id="SELECTALL" parameterType="PsdBoardVO"  resultType ="PsdBoardVO" >
+ 
+    select *  from psdboard
+    order  by seq  desc 
+
+</select>
+
+
+
+</mapper>

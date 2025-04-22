@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC 
+  "-//mybatis.org//DTD Config 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+  <typeAliases>
+    <typeAlias alias="BoardVO"  type="com.maju.biz.board.BoardVO" />  
+    <typeAlias alias="PsdBoardVO"  type="com.maju.biz.psdboard.PsdBoardVO" />  
+    <typeAlias alias="MemberVO"  type="com.maju.biz.member.MemberVO" />  
+    <typeAlias alias="CommentVO"  type="com.maju.biz.comment.CommentVO" />  
+    <typeAlias alias="CartVO"  type="com.maju.biz.shopping.CartVO" />  
+    <typeAlias alias="OrderVO"  type="com.maju.biz.shopping.OrderVO" />  
+    <typeAlias alias="ShoppingVO"  type="com.maju.biz.shopping.ShoppingVO" />
+    <typeAlias alias="CkeditorVO"  type="com.maju.biz.ckeditor.CkeditorVO" />   
+  </typeAliases>
+
+  <mappers>  
+    <mapper resource="mappings/board-mapping.xml"  />
+    <mapper resource="mappings/psdboard-mapping.xml"  /> 
+    <mapper resource="mappings/member-mapping.xml"  />     
+    <mapper resource="mappings/comment-mapping.xml"  />   
+    <mapper resource="mappings/shopping-mapping.xml"  />
+    <mapper resource="mappings/ckeditor-mapping.xml"  />      
+  </mappers>
+</configuration>

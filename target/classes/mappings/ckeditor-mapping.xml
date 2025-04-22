@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Ckeditor">
+
+<insert id="INSERT" parameterType="CkeditorVO">
+ insert into ckeditor(idx, title, name, etc, today, filename)
+ values (ckeditor_idx.nextval,#{title}, #{name}, #{etc} ,sysdate,#{filename})
+</insert>
+
+
+
+<select id="SELECTALL" parameterType="CkeditorVO"  resultType ="CkeditorVO" >
+ 
+    select *  from ckeditor
+    
+    
+
+</select>
+<select id="SELECTONE" parameterType="CkeditorVO"  resultType ="CkeditorVO" >
+ select *  from ckeditor where idx = #{idx}
+</select>
+<update id="UPDATE" parameterType="CkeditorVO">
+  update ckeditor 
+  set title=#{title}, name=#{name}, etc=#{etc} 
+  where idx= #{idx} 
+</update>
+<update id="UPDATEFILE" parameterType="CkeditorVO">
+ update ckeditor set title=#{title} , name=#{name} ,
+                     etc=#{etc}, filename=#{filename}
+ where  idx=#{idx}
+</update>
+
+<delete id="DELETE" parameterType="CkeditorVO">
+ delete from ckeditor where  idx = #{idx} 
+</delete>
+
+</mapper>

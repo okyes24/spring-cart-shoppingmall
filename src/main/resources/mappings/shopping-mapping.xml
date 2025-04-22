@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SHOPPING">
+
+<insert id="SHOPPINGINSERT" parameterType="ShoppingVO">
+ insert into shopping (pid,pname,pprice,pdesc,pimg, pbaesongbi) 
+ values (spid.nextval,#{pname},#{pprice},#{pdesc}, #{pimg}, #{pbaesongbi})
+</insert>
+
+<select id="SHOPPINGSELECT" parameterType="ShoppingVO" 
+                            resultType ="ShoppingVO" >
+ 
+   select  *  from shopping
+   order  by  pid  desc 
+
+</select>
+
+<select id="SHOPPINGEDIT" parameterType="ShoppingVO" 
+                            resultType ="ShoppingVO" >
+ 
+   select  *  from shopping
+   where pid=#{pid} 
+
+</select>
+<insert id="CARTINSERT" parameterType="CartVO">
+ insert into shopping_cart (cart_id,mid,pid,amount) 
+ values (cartSid.nextval,#{mid},#{pid},#{amount})
+</insert>
+<select id="CARTSELECT" parameterType="CartVO" 
+                            resultType ="ShoppingVO" >
+ 
+   select cart_id,mid,amount,c.pid,pname,pprice,pbaesongbi,pdesc,pimg 
+   from shopping s join shopping_cart c on s.pid=c.pid where c.mid=#{mid, jdbcType=VARCHAR}
+
+</select>
+
+<insert id="ORDERINSERT" parameterType="OrderVO">
+ insert into shoppingordert (idxOrder,orderg,cart_id,mid,pid,amount,today) 
+ values (ordertsid.nextval,#{orderg},#{cart_id},#{mid},#{pid},#{amount},sysdate)
+</insert>
+
+
+<select id="CARTORDER" parameterType="CartVO" 
+                            resultType ="CartVO" >
+ 
+   select * from 
+   shopping_cart where mid=#{mid, jdbcType=VARCHAR}
+
+</select>
+
+<select id="ORDERDELETE" parameterType="CartVO" >
+ 
+   delete from 
+   shopping_cart where mid=#{mid, jdbcType=VARCHAR}
+
+</select>
+<delete id="CARTONEDELETE" parameterType="CartVO" >
+ 
+   delete from 
+   shopping_cart where cart_id=#{cart_id, jdbcType=VARCHAR}
+
+</delete>
+<update id="CARTUPDATE" parameterType="CartVO">
+update shopping_cart set amount=#{amount} where cart_id=#{cart_id, jdbcType=VARCHAR}
+
+</update>
+<select id="CARTSELECTONE" parameterType="CartVO" 
+                            resultType ="CartVO" >
+ 
+   select * from 
+   shopping_cart where mid=#{mid, jdbcType=VARCHAR} and pid=#{pid}
+
+</select>
+
+<update id="CARTUPDATE_BY_PID" parameterType="CartVO">
+    UPDATE shopping_cart
+    SET amount = #{amount}
+    WHERE mid = #{mid} AND pid = #{pid}
+</update>
+
+<select id="ORDERLIST" parameterType="OrderVO" resultType ="OrderVO" >
+ select  distinct orderg,mid,name,tel,today from 
+ member m join shoppingordert o on m.id=o.mid   
+  where 1=1
+    <if  test="ch1 == 'name'">
+      and name  like #{ch2}
+    </if>
+    <if  test="ch1 == 'tel'">
+      and tel  like #{ch2}
+    </if>
+
+</select>
+
+<select id="ORDERLISTONE" parameterType="OrderVO" resultType ="OrderVO" >
+ select orderg,pname,pprice,pdesc,pimg,amount,today,addr,name,tel
+ from shoppingOrdert o join shopping s on o.pid=s.pid 
+ join member m on m.id=o.mid
+ where orderg=#{orderg}
+
+</select>
+
+
+</mapper>

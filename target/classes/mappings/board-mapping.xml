@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Board">
+
+<insert id="INSERT" parameterType="BoardVO">
+ insert into board0328(seq, title, name, content, regdate, cnt)
+ values (idx_board.nextval,#{title}, #{name}, #{content} ,sysdate, 1)
+</insert>
+
+<update id="UPDATE" parameterType="BoardVO">
+  update board0328 
+  set title=#{title}, name=#{name}, content=#{content} 
+  where seq = #{seq} 
+</update>
+
+<update id="CNT" parameterType="BoardVO">
+  update board0328 
+  set cnt = cnt + 1 
+  where seq = #{seq} 
+</update>
+
+
+
+<delete id="DELETE" parameterType="int">
+ delete from board0328 where  seq = #{seq} 
+</delete>
+
+<select id="SELECTONE" parameterType="BoardVO"  resultType ="BoardVO" >
+ select *  from board0328 where seq = #{seq}
+</select>
+
+<select id="SELECTALL" parameterType="BoardVO"  resultType ="BoardVO" >
+ 
+    select *  from board0328
+    where 1=1
+    <if  test="ch1 == 'name'">
+      and name  like #{ch2}
+    </if>
+    <if  test="ch1 == 'title'">
+      and title  like #{ch2}
+    </if>
+    order  by seq  desc 
+
+</select>
+
+<select id="TOTALCOUNT" parameterType="BoardVO"  resultType ="int" >
+ select count(*) as totalCount  from board0328 
+    where 1=1
+    <if  test="ch1 == 'name'">
+      and name  like #{ch2}
+    </if>
+    <if  test="ch1 == 'title'">
+      and title  like #{ch2}
+    </if>
+</select>
+
+
+</mapper>
