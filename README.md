@@ -68,7 +68,7 @@ src/
 1. Oracle DB 실행 및 테이블 구성 (SQL 스크립트 참고)
 2. STS(Spring Tool Suite) 또는 Eclipse에서 Import
 3. pom.xml 동기화 및 applicationContext.xml 확인
-4. 서버 실행 후 `localhost:8080/` 접속
+4. 서버 실행 후 `localhost:8888/` 접속
 
 ---
 
@@ -78,6 +78,3 @@ src/
 - **개발 기간**: 2025.04.14 ~ 2025.04.23
 
 ---
-
-## 📜 라이선스
-본 프로젝트는 개인 포트폴리오 용도로 사용되며, 상업적 사용은 제한됩니다.
